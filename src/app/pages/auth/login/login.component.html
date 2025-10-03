@@ -1,0 +1,77 @@
+<main class="gradient-bg min-h-screen flex items-center justify-center p-4">
+ <div class="w-full max-w-md">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg">
+                    <span class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">LS</span>
+                </div>
+            </div>
+            <h1 class="text-3xl font-bold text-white mb-2">Criar Conta</h1>
+            <p class="text-blue-100">Junte-se ao LinkShort e comece a encurtar seus links</p>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="bg-white rounded-3xl shadow-2xl p-8">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="registrationForm" class="space-y-6">
+                <!-- Username Field -->
+                <div>
+                    <label for="username" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Nome de Usuário
+                    </label>
+                    <input 
+                        type="text" 
+                        id="username"
+                        name="username"
+                        placeholder="Digite seu nome de usuário"
+                        class="input-focus w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none text-gray-800 placeholder-gray-400"
+                        required
+                        minlength="3"
+                        formControlName="username"
+                    >
+                    <span class="text-red-500 text-sm" *ngIf="FieldIsInvalid('username')">Por favor, insira um nome de usuário válido</span>
+                </div>
+
+                <!-- Password Field -->
+                <div>
+                    <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Senha
+                    </label>
+                    <input 
+                        type="password" 
+                        id="password"
+                        name="password"
+                        placeholder="Digite sua senha"
+                        class="input-focus w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none text-gray-800 placeholder-gray-400"
+                        required
+                        minlength="6"
+                        formControlName="password"
+                    >
+                    <span class="text-red-500 text-sm" *ngIf="FieldIsInvalid('username')">Por favor, insira uma senha válida</span>
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                    type="submit"
+                    id="submitBtn"
+                    class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105"
+                >
+                    Login
+                </button>
+                <div class="w-full flex justify-center">
+                    <span class="text-red-500 text-sm" *ngIf="errorMessage">{{errorMessage}}</span>
+                </div>
+            </form>
+
+            <!-- Login Link -->
+            <div class="text-center mt-6 pt-6 border-t border-gray-100">
+                <p class="text-gray-600">
+                    Já tem uma conta? 
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
+                        Fazer login
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
