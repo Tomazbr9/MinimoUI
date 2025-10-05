@@ -20,8 +20,9 @@ export class HomeComponent implements OnInit {
 
   constructor(private urlService: UrlService){
     this.urlForm = new FormGroup({
+      urlName: new FormControl('', Validators.required),
       originalUrl: new FormControl('', Validators.required),
-      shortUrl: new FormControl('')
+      shortenedUrl: new FormControl('')
     });
   }
 

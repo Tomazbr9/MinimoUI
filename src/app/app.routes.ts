@@ -1,16 +1,19 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { inject } from '@angular/core';
 import { AuthGuard } from './core/guard/auth.guard';
 
 export const routes: Routes = [
 
       {
             path: '',
-            component: HomeComponent,
-            pathMatch: 'full',
-            canActivate: [() => inject(AuthGuard).canActivate()]
+            loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent),
+            canActivate: [AuthGuard],
+      },
 
+      {
+            path: 'urls',
+            loadComponent: () => import('./pages/urls/urls.component').then(m => m.UrlsComponent),
+            canActivate: [AuthGuard]
       },
 
       {

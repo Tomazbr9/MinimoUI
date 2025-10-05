@@ -3,6 +3,8 @@ import { v4 as uuid } from "uuid";
 export class Url {
 
       id!: string;
+      urlName!: string;
+      totalClicks!: number;
       originalUrl!: string;
       shortenedUrl!: string;
 

@@ -12,6 +12,17 @@
         <!-- URL Shortener Form -->
         <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 shadow-2xl">
             <form [formGroup]="urlForm" (ngSubmit)="createShortUrl()"  id="shortenForm" class="flex flex-col gap-4">
+                
+                <input 
+                    type="url" 
+                    id="urlInput"
+                    placeholder="Nome da URL"
+                    name="urlName"
+                    formControlName="urlName"
+                    class="flex-1 px-6 py-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none text-lg"
+                    required
+                >
+
                 <input 
                     type="url" 
                     id="urlInput"
@@ -21,13 +32,13 @@
                     class="flex-1 px-6 py-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none text-lg"
                     required
                 >
-                <!-- Novo campo de URL personalizada -->
+
                 <input
                     type="text"
                     id="customUrl"
                     placeholder="URL personalizada (opcional)"
-                    name="shorUrl"
-                    formControlName="shortUrl"
+                    name="shortenedUrl"
+                    formControlName="shortenedUrl"
                     class="flex-1 px-6 py-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none text-lg"
                 >
                 <button 

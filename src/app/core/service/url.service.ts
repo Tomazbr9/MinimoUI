@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Url } from '../model/url';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { TotalClicksAndMostClickedResponse } from '../interface/totalClicksAndMostClickedResponse';
 
 @Injectable({ providedIn: 'root' })
 export class UrlService {
@@ -15,8 +16,12 @@ export class UrlService {
       }
 
       createUrlShort(url: Url): Observable<Url> {
-            console.log('Dados enviados para o serviço:', typeof(url));
             return this.http.post<Url>(`${this.apiUrl}`, url);
+      }
+
+      totalClicksAndMostClickedUrl(): Observable<TotalClicksAndMostClickedResponse> {
+            return this.http.get<TotalClicksAndMostClickedResponse>(`${this.apiUrl}/totalclicksurls`);
+            
       }
 
 

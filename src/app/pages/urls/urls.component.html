@@ -1,0 +1,151 @@
+<!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Minhas URLs</h1>
+            <p class="text-gray-600">Gerencie todos os seus links encurtados</p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Total de Links</p>
+                        <p class="text-2xl font-bold text-gray-800" id="totalLinks">{{urlsList.length || 0}}</p>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                        <span class="text-blue-600 text-xl">🔗</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Total de Cliques</p>
+                        <p class="text-2xl font-bold text-gray-800">{{totalClicks}}</p>
+                    </div>
+                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                        <span class="text-green-600 text-xl">👆</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Mais Clicado</p>
+                        <p class="text-2xl font-bold text-gray-800">{{mostClicked}}</p>
+                    </div>
+                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                        <span class="text-purple-600 text-xl">🏆</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Controls -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <!-- Search -->
+                <div class="flex-1 max-w-md">
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            id="searchInput"
+                            placeholder="Buscar por URL ou título..."
+                            class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none"
+                        >
+                        <div class="absolute left-3 top-3 text-gray-400">
+                            <span>🔍</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Actions -->
+                <div class="flex items-center space-x-3">
+                    <button 
+                        id="selectAllBtn"
+                        class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                        Selecionar Todos
+                    </button>
+                    <button 
+                        id="deleteSelectedBtn"
+                        class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled
+                    >
+                        Deletar Selecionados
+                    </button>
+                    <button class="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all">
+                        + Nova URL
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- URLs List -->
+        <div class="space-y-4" id="urlsList">
+
+            <!-- URL Card -->
+            <div *ngFor="let url of urlsList" class="url-card bg-white rounded-2xl shadow-lg border border-gray-100 p-6 card-hover slide-in" data-url-id="3">
+                <div class="flex items-start space-x-4">
+                    <input type="checkbox" class="url-checkbox mt-2 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold text-gray-800 mb-1">{{url.urlName}}</h3>
+                                <p class="text-sm text-gray-500 mb-2">Criado em 13 de Nov, 2024</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">
+                                    {{url.totalClicks}} cliques
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm text-gray-500 font-medium">Link curto:</span>
+                                <code class="bg-blue-50 text-blue-700 px-2 py-1 rounded text-sm font-mono">http://localhost:8080/{{url.shortenedUrl}}</code>
+                                <button class="copy-btn text-blue-600 hover:text-blue-800 transition-colors" data-url="https://lnk.sh/ghi789">
+                                    📋
+                                </button>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm text-gray-500 font-medium">URL original:</span>
+                                <span class="text-sm text-gray-700 truncate">{{url.originalUrl}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-2">
+                        <button class="p-2 text-gray-400 hover:text-blue-600 transition-colors" title="Editar">
+                            ✏️
+                        </button>
+                        <button class="p-2 text-gray-400 hover:text-green-600 transition-colors" title="Estatísticas">
+                            📊
+                        </button>
+                        <button class="delete-btn p-2 text-gray-400 hover:text-red-600 transition-colors" title="Deletar" data-url-id="3">
+                            🗑️
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty State (hidden by default) -->
+        <div id="emptyState" class="hidden text-center py-16">
+            <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="text-gray-400 text-4xl">🔗</span>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Nenhuma URL encontrada</h3>
+            <p class="text-gray-600 mb-6">Você ainda não criou nenhum link encurtado.</p>
+            <button class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all">
+                Criar Primeira URL
+            </button>
+        </div>
+    </main>
+
