@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { UrlService } from '../../core/service/url.service';
 import { Url } from '../../core/model/url';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-urls',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './urls.component.html',
   styleUrl: './urls.component.scss'
 })
@@ -16,6 +17,8 @@ export class UrlsComponent implements OnInit {
 
   totalClicks: number = 0;
   mostClicked: number = 0;
+
+  searchNameUrl: string = '';
 
   constructor(private urlService: UrlService) { }
 
@@ -42,6 +45,20 @@ export class UrlsComponent implements OnInit {
       },
       error: (err) => console.error('Erro ao carregar URLs:', err)
     })
+  }
+
+  filterUrls(): Url[] {
+
+    if (!this.searchNameUrl) {
+      return this.urlsList;
+    }
+
+    const searchTerm = this.searchNameUrl.toLowerCase();
+
+    return this.urlsList.filter(url =>
+      url.urlName.toLowerCase().includes(searchTerm) ||
+      url.originalUrl.toLowerCase().includes(searchTerm)
+    );
   }
 
 

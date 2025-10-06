@@ -49,19 +49,24 @@
         <!-- Controls -->
         <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <!-- Search -->
-                <div class="flex-1 max-w-md">
-                    <div class="relative">
+               <!-- Search -->
+                <div class="flex items-center max-w-md">
+                    <div class="relative flex-1">
                         <input 
-                            type="text" 
-                            id="searchInput"
-                            placeholder="Buscar por URL ou título..."
-                            class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none"
+                        type="text"
+                        id="searchUrl"
+                        [(ngModel)]="searchNameUrl"
+                        placeholder="Buscar por URL ou título..."
+                        class="w-full pl-4 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none"
                         >
-                        <div class="absolute left-3 top-3 text-gray-400">
-                            <span>🔍</span>
-                        </div>
                     </div>
+
+                    <button 
+                        (click)="filterUrls()"
+                        class="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all ml-3"
+                    >
+                        Buscar
+                    </button>
                 </div>
                 
                 <!-- Actions -->
@@ -90,7 +95,7 @@
         <div class="space-y-4" id="urlsList">
 
             <!-- URL Card -->
-            <div *ngFor="let url of urlsList" class="url-card bg-white rounded-2xl shadow-lg border border-gray-100 p-6 card-hover slide-in" data-url-id="3">
+            <div *ngFor="let url of filterUrls()" class="url-card bg-white rounded-2xl shadow-lg border border-gray-100 p-6 card-hover slide-in" data-url-id="3">
                 <div class="flex items-start space-x-4">
                     <input type="checkbox" class="url-checkbox mt-2 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                     <div class="flex-1 min-w-0">
