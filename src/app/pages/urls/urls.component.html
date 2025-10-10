@@ -133,7 +133,7 @@
                         <button class="p-2 text-gray-400 hover:text-green-600 transition-colors" title="Estatísticas">
                             📊
                         </button>
-                        <button class="delete-btn p-2 text-gray-400 hover:text-red-600 transition-colors" title="Deletar" data-url-id="3">
+                        <button (click)="deleteUrl(url.id)" class="delete-btn p-2 text-gray-400 hover:text-red-600 transition-colors" title="Deletar" data-url-id="3">
                             🗑️
                         </button>
                     </div>

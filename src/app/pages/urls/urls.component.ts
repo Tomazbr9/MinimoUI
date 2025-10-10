@@ -47,6 +47,13 @@ export class UrlsComponent implements OnInit {
     })
   }
 
+  deleteUrl(id: String): void {
+    this.urlService.deleteUrlShort(id).subscribe({
+      next: () => console.log('URL deletada com sucesso'),
+      error: (err) => console.error('Erro ao deletar URL:', err),
+    });
+  }
+
   filterUrls(): Url[] {
 
     if (!this.searchNameUrl) {

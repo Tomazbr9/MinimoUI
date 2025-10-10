@@ -3,6 +3,7 @@ import { Url } from '../model/url';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { TotalClicksAndMostClickedResponse } from '../interface/totalClicksAndMostClickedResponse';
+import { patchUrlRequest } from '../interface/patchUrlRequest';
 
 @Injectable({ providedIn: 'root' })
 export class UrlService {
@@ -22,6 +23,14 @@ export class UrlService {
       totalClicksAndMostClickedUrl(): Observable<TotalClicksAndMostClickedResponse> {
             return this.http.get<TotalClicksAndMostClickedResponse>(`${this.apiUrl}/totalclicksurls`);
             
+      }
+
+      patchUrlShort(id: number, body: patchUrlRequest): Observable<Url> {
+            return this.http.patch<Url>(`${this.apiUrl}/${id}`, body);
+      }
+
+      deleteUrlShort(id: String): Observable<void> {
+            return this.http.delete<void>(`${this.apiUrl}/${id}`);
       }
 
 
