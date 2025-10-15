@@ -25,8 +25,8 @@ export class UrlService {
             
       }
 
-      patchUrlShort(id: number, body: patchUrlRequest): Observable<Url> {
-            return this.http.patch<Url>(`${this.apiUrl}/${id}`, body);
+      putUrlShort(id: number, body: patchUrlRequest): Observable<Url> {
+            return this.http.put<Url>(`${this.apiUrl}/${id}`, body);
       }
 
       deleteUrlShort(id: String): Observable<void> {
